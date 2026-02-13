@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ristorante.controller.OrderController">
+   <children>
+      <ListView fx:id="menuListView" layoutX="80.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button fx:id="addProductButton" layoutX="80.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleAddProduct" prefHeight="35.0" prefWidth="200.0" text="+ aggiungi prodotto" />
+      <TableView fx:id="orderTableView" layoutX="336.0" layoutY="25.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="colName" prefWidth="75.0" text="nome" />
+          <TableColumn fx:id="colQty" prefWidth="75.0" text="quantita" />
+        </columns>
+      </TableView>
+      <Button fx:id="sendOrderButton" layoutX="336.0" layoutY="351.0" mnemonicParsing="false" onAction="#handleSendOrder" prefHeight="35.0" prefWidth="200.0" text="invia ordine" />
+      <Button fx:id="removeProductButton" layoutX="336.0" layoutY="308.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="200.0" text="- rimuovi prodotto" />
+      <Button fx:id="backButton" layoutX="45.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleBackButton" text="torna indietro" />
+      <Label fx:id="totalLabel" layoutX="336.0" layoutY="244.0" text="Totale: 0$" />
+      <Text layoutX="336.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+   </children>
+</AnchorPane>

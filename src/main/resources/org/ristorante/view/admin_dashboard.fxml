@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ristorante.controller.AdminController">
+   <VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <fx:include source="components/header.fxml" />
+   </children>
+</VBox>
+   <children>
+      <VBox alignment="CENTER" layoutX="228.0" layoutY="72.0" prefHeight="200.0" spacing="30.0">
+         <children>
+            <Button fx:id="menuButton" mnemonicParsing="false" onAction="#goToMenu" text="menu" />
+            <Button fx:id="paymentButton" mnemonicParsing="false" onAction="#goToPayment" text="pagamenti ordini" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

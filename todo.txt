@@ -1,0 +1,16 @@
+-inserire il calcolo provvisorio dell'ordine quando si visualizza una comanda per il cameriere
+
+-sviluppare l'hedaer controller per il logut (semplice bottone in alto a destra ci clicchi
+e pulisce la sessione riportandoti al login)
+
+-implementare l'observer - quando sia invia un ordine si aggiorna la lista di observer interessati
+se ci sono solo comande per la cucina si avverte solo quella, e viceversa
+la cucina puo' mandare un segnale anche al cameriere, dicendo che un ordine e' pronto
+non e' possibile sviluppare lo state "ready" poiche' significherebbe dividere la comanda in 2
+sia per il bar che per la cucina. Cio' implica che lo state "ready" non rispecchia la realta'.
+A questo punto si opta per un observer che manda una notifca dicendo esplicitamente chi ha premuto "PRONTO"
+
+-quando il pagamento viene effettuato attualmente la lista di sinistra non si aggiorna
+ quindi fixare questo comportamento. Dopo di che dovrebbe essere finito la parte dei pagamenti
+ aggiungere eventualmente anche gli ordini pagati, quindi basta inserire un bottone e applicare
+ un altro filtro

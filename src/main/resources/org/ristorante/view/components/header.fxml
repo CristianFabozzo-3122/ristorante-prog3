@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<?import javafx.scene.control.Label?>
+<AnchorPane prefHeight="40.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ristorante.controller.components.HeaderController">
+    <children>
+        <Button fx:id="logoutButton" layoutY="7.0" onAction="#handleLogout" text="Logout" AnchorPane.rightAnchor="20.0" />
+    </children>
+</AnchorPane>

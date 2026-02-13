@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+
+<TableView fx:id="orderDetails"
+           xmlns="http://javafx.com/javafx/25"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="org.ristorante.controller.components.OrderDetailController">
+    <columns>
+        <TableColumn fx:id="colName" prefWidth="150.0" text="Nome Piatto" />
+        <TableColumn fx:id="colQty" prefWidth="75.0" text="Quantità" />
+    </columns>
+
+    <columnResizePolicy>
+        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+    </columnResizePolicy>
+</TableView>
