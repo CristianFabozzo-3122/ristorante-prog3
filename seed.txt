@@ -1,0 +1,77 @@
+DROP TABLE IF EXISTS OrderDetail;
+DROP TABLE IF EXISTS RestaurantOrder;
+DROP TABLE IF EXISTS MenuItem;
+DROP TABLE IF EXISTS RestaurantTable;
+DROP TABLE IF EXISTS User;
+
+CREATE TABLE User (
+                        user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        username TEXT NOT NULL UNIQUE,
+                        password TEXT NOT NULL,
+                        role TEXT NOT NULL CHECK (role IN ('ADMIN', 'WAITER', 'CHEF', 'BARTENDER'))
+);
+
+CREATE TABLE RestaurantTable (
+                        table_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        name TEXT NOT NULL UNIQUE  -- Es: "Tavolo 1", "Tavolo VIP"
+);
+
+CREATE TABLE MenuItem (
+                       menu_item_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                       name TEXT NOT NULL,
+                       price REAL NOT NULL, -- REAL è il float/double di SQLite
+                       category TEXT NOT NULL CHECK (category IN ('KITCHEN', 'BAR'))
+);
+
+CREATE TABLE RestaurantOrder (
+                        order_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        user_id_fk INTEGER NOT NULL,
+                        table_id_fk INTEGER NOT NULL,
+
+                        creation_date TEXT DEFAULT CURRENT_TIMESTAMP,
+
+                        current_state TEXT NOT NULL DEFAULT 'ORDERED'
+                            CHECK (current_state IN ('ORDERED', 'SERVED', 'PAID')),
+
+                        payment_method TEXT CHECK (payment_method IN ('CASH', 'CARD', 'ATM')),
+
+-- quando creato un ordine avra' 0 come prezzo, poi verra' rifatto un calcolo sul momento con le voci
+    -- del menu e quindi verra' aggiornato il prezzo totale
+                        totalPrice REAL DEFAULT 0.0,
+
+                        FOREIGN KEY (user_id_fk) REFERENCES User(user_id),
+                        FOREIGN KEY (table_id_fk) REFERENCES RestaurantTable(table_id)
+);
+
+CREATE TABLE OrderDetail (
+                         id INTEGER PRIMARY KEY AUTOINCREMENT,
+                         order_id_fk INTEGER NOT NULL,
+                         menu_item_fk INTEGER NOT NULL,
+
+                         quantity INTEGER NOT NULL CHECK (quantity > 0),
+
+-- il prezzo viene copiato al momento della creazione dell'ordine (quindi copia dal menu)
+                         copy_price REAL NOT NULL,
+
+-- cancello l'ordine, si cancellano anche le righe
+                         FOREIGN KEY (order_id_fk) REFERENCES RestaurantOrder(order_id) ON DELETE CASCADE,
+                         FOREIGN KEY (menu_item_fk) REFERENCES MenuItem(menu_item_id)
+);
+
+insert into MenuItem (menu_item_id, name, price, category)
+values (1, 'spaghetti', 5.00, 'KITCHEN');
+
+insert into User (username, password, role) values ('admin', 'admin', 'ADMIN');
+insert into User (username, password, role) values ('waiter', 'waiter', 'WAITER');
+insert into User (username, password, role) values ('chef', 'chef', 'CHEF');
+insert into User (username, password, role) values ('bartender', 'bartender', 'BARTENDER');
+
+insert into RestaurantTable (name) values ('tavolo 1');
+insert into RestaurantTable (name) values ('tavolo 3');
+insert into RestaurantTable (name) values ('tavolo vip');
+
+SELECT * from User;
+SELECT * from RestaurantTable;
+SELECT * from RestaurantOrder;
+SELECT * from OrderDetail;
+SELECT * from MenuItem;
